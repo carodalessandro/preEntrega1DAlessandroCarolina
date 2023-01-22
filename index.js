@@ -24,7 +24,7 @@ function carritoDeCompras() {
         productosAgregados =
           cupcakes + " " + brownie + " " + box + " " + minicakes;
         alert(
-          "Cupcakes $500, " +
+          "Cupcakes $500. " +
             "Productos Agregados: " +
             productosAgregados +
             " Total de la compra: $" +
@@ -41,7 +41,7 @@ function carritoDeCompras() {
         productosAgregados =
           cupcakes + " " + brownie + " " + box + " " + minicakes;
         alert(
-          "Brownie $3000, " +
+          "Brownie $3000. " +
             "Productos Agregados: " +
             productosAgregados +
             " Total de la compra: $" +
@@ -58,7 +58,7 @@ function carritoDeCompras() {
         productosAgregados =
           cupcakes + " " + brownie + " " + box + " " + minicakes;
         alert(
-          "Box $4000, " +
+          "Box $4000. " +
             "Productos Agregados: " +
             productosAgregados +
             " Total de la compra: $" +
@@ -75,12 +75,16 @@ function carritoDeCompras() {
         productosAgregados =
           cupcakes + " " + brownie + " " + box + " " + minicakes;
         alert(
-          "Minicakes $1500, " +
+          "Minicakes $1500. " +
             "Productos Agregados: " +
             productosAgregados +
             " Total de la compra: $" +
             totalCompra
         );
+        break;
+
+      default:
+        alert("Por favor, ingrese un producto de la lista. Muchas gracias");
         break;
     }
     entrada = prompt(
