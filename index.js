@@ -1,95 +1,147 @@
-function carritoDeCompras() {
-  let entrada = prompt(
-    "Ingrese un producto (Cupcakes, Brownie, Box, Minicakes) para agregar al carrito"
+function inicio() {
+  let inicio = prompt(
+    "Indique que acción desea realizar: comprar(1) o conocer productos(2)"
   );
-  let totalCompra = parseInt(0);
-  let sumaCupcakes = parseInt(0);
-  let sumaBrownie = parseInt(0);
-  let sumaBox = parseInt(0);
-  let sumaMinicakes = parseInt(0);
-  let cupcakes = " ";
-  let brownie = " ";
-  let box = " ";
-  let minicakes = " ";
-  let productosAgregados = " ";
+  if (inicio == "1") {
+    function carritoDeCompras() {
+      let entrada = prompt(
+        "Ingrese un producto (Cupcakes, Brownie, Box, Minicakes) para agregar al carrito"
+      );
 
-  while (entrada != "finalizar") {
-    switch (entrada) {
-      case "Cupcakes":
-        totalCompra = totalCompra + parseInt(500);
-        if ((entrada = "Cupcakes")) {
-          sumaCupcakes = sumaCupcakes + parseInt(1);
-        }
-        cupcakes = "Cupcakes " + sumaCupcakes + " unidad/es. ";
+      let totalCompra = parseInt(0);
+      let cupcakes = " ";
+      let brownie = " ";
+      let box = " ";
+      let minicakes = " ";
+      let sumaBrownie = parseInt(0);
+      let sumaBox = parseInt(0);
+      let sumaCupcakes = parseInt(0);
+      let sumaMinicakes = parseInt(0);
+      let productosAgregados;
+
+      function total(n) {
+        totalCompra += parseInt(n);
+        return totalCompra;
+      }
+
+      function agregarProductos() {
         productosAgregados =
           cupcakes + " " + brownie + " " + box + " " + minicakes;
-        alert(
-          "Cupcakes $500. " +
-            "Productos Agregados: " +
-            productosAgregados +
-            " Total de la compra: $" +
-            totalCompra
-        );
-        break;
+        return productosAgregados;
+      }
 
-      case "Brownie":
-        totalCompra = totalCompra + parseInt(3000);
-        if ((entrada = "Brownie")) {
-          sumaBrownie = sumaBrownie + parseInt(1);
+      function mensaje() {
+        return (
+          "Productos Agregados: " +
+          agregarProductos() +
+          " Total de la compra: $" +
+          totalCompra
+        );
+      }
+
+      while (entrada != "finalizar") {
+        switch (entrada) {
+          case "Cupcakes":
+            total(500);
+            sumaCupcakes = sumaCupcakes + parseInt(1);
+            cupcakes = "Cupcakes " + sumaCupcakes + " unidad/es. ";
+            agregarProductos();
+            alert("Cupcakes $500. " + mensaje());
+            break;
+
+          case "Brownie":
+            total(3000);
+            sumaBrownie = sumaBrownie + parseInt(1);
+            brownie = "Brownie " + sumaBrownie + " unidad/es. ";
+            agregarProductos();
+            alert("Brownie $3000. " + mensaje());
+            break;
+
+          case "Box":
+            total(4000);
+            sumaBox = sumaBox + parseInt(1);
+            box = "Box " + sumaBox + " unidad/es. ";
+            agregarProductos();
+            alert("Box $4000. " + mensaje());
+            break;
+
+          case "Minicakes":
+            total(1500);
+            sumaMinicakes = sumaMinicakes + parseInt(1);
+            minicakes = "Minicakes " + sumaMinicakes + " unidad/es. ";
+            agregarProductos();
+            alert("Minicakes $1500. " + mensaje());
+            break;
+
+          default:
+            alert("Por favor, ingrese un producto de la lista. Muchas gracias");
+            break;
         }
-        brownie = "Brownie " + sumaBrownie + " unidad/es. ";
-        productosAgregados =
-          cupcakes + " " + brownie + " " + box + " " + minicakes;
-        alert(
-          "Brownie $3000. " +
-            "Productos Agregados: " +
-            productosAgregados +
-            " Total de la compra: $" +
-            totalCompra
+        entrada = prompt(
+          "Ingrese un producto (Cupcakes, Brownie, Box, Minicakes) o finalizar para terminar"
         );
-        break;
-
-      case "Box":
-        totalCompra = totalCompra + parseInt(4000);
-        if ((entrada = "Box")) {
-          sumaBox = sumaBox + parseInt(1);
-        }
-        box = "Box " + sumaBox + " unidad/es. ";
-        productosAgregados =
-          cupcakes + " " + brownie + " " + box + " " + minicakes;
-        alert(
-          "Box $4000. " +
-            "Productos Agregados: " +
-            productosAgregados +
-            " Total de la compra: $" +
-            totalCompra
-        );
-        break;
-
-      case "Minicakes":
-        totalCompra = totalCompra + parseInt(1500);
-        if ((entrada = "Minicakes")) {
-          sumaMinicakes = sumaMinicakes + parseInt(1);
-        }
-        minicakes = "Minicakes " + sumaMinicakes + " unidad/es. ";
-        productosAgregados =
-          cupcakes + " " + brownie + " " + box + " " + minicakes;
-        alert(
-          "Minicakes $1500. " +
-            "Productos Agregados: " +
-            productosAgregados +
-            " Total de la compra: $" +
-            totalCompra
-        );
-        break;
-
-      default:
-        alert("Por favor, ingrese un producto de la lista. Muchas gracias");
-        break;
+      }
     }
-    entrada = prompt(
-      "Ingrese un producto (Cupcakes, Brownie, Box, Minicakes) o finalizar para terminar"
-    );
+    carritoDeCompras();
+  } else if (inicio == "2") {
+    function conocerProductos() {
+      let descripcionProductos = prompt(
+        "Indique que producto desea conocer (Cupcakes, Brownie, Box, Minicakes) o si desea conocer el Stock disponible(Stock)"
+      );
+
+      class Producto {
+        constructor(producto, porciones, precio, stock) {
+          this.producto = producto;
+          this.porciones = parseInt(porciones);
+          this.precio = parseInt(precio);
+          this.stock = parseInt(stock);
+        }
+      }
+
+      const productos = [];
+      productos.push(new Producto("Cupcakes", 1, 500, 24));
+      productos.push(new Producto("Brownie", 10, 3000, 5));
+      productos.push(new Producto("Box", 2, 4000, 0));
+      productos.push(new Producto("Minicakes", 4, 1500, 10));
+
+      const listaCupcakes = productos.find((el) => el.producto == "Cupcakes");
+      const listaBrownie = productos.find((el) => el.producto == "Brownie");
+      const listaBox = productos.find((el) => el.producto == "Box");
+      const listaMinicakes = productos.find((el) => el.producto == "Minicakes");
+      const disponibilidadStock = productos.filter((el) => el.stock != 0);
+
+      while (descripcionProductos != "finalizar") {
+        switch (descripcionProductos) {
+          case "Cupcakes":
+            console.log(listaCupcakes);
+            break;
+
+          case "Brownie":
+            console.log(listaBrownie);
+            break;
+
+          case "Box":
+            console.log(listaBox);
+            break;
+
+          case "Minicakes":
+            console.log(listaMinicakes);
+            break;
+
+          case "Stock":
+            console.log(disponibilidadStock);
+            break;
+
+          default:
+            alert("Por favor, ingrese una opción válida. Muchas gracias");
+            break;
+        }
+        descripcionProductos = prompt(
+          "¿Desea conocer otro producto o el Stock disponible? (Cupcakes, Brownie, Box, Minicakes, Stock) o coloque finalizar para terminar"
+        );
+      }
+    }
+    conocerProductos();
   }
 }
-carritoDeCompras();
+inicio();
